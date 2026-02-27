@@ -16,35 +16,60 @@ export default function ContactPage() {
   return (
     <Container>
       <div className="py-12 max-w-2xl">
-        <h1 className="text-3xl font-semibold tracking-tight">臾몄쓽</h1>
+        <h1 className="text-3xl font-semibold tracking-tight">문의</h1>
         <p className="mt-4 text-neutral-600 leading-relaxed">
-          ?곕え/?꾩엯/諛고룷 臾몄쓽瑜??④꺼二쇱꽭?? V1?먯꽌?????쒖텧留?諛쏄퀬, ?ㅼ젣 ?꾩넚? 異뷀썑 ?곌껐?????덉뒿?덈떎.
+          Roast Pilot에 대한 도입 문의, 기능 질문, 협업 제안을 남겨주세요.
         </p>
 
         <div className="mt-6 space-y-4">
           {done ? <Alert kind="success" message={done} /> : null}
-          <Input label="濡쒖뒪?곕━紐? value={roastery} onChange={setRoastery} placeholder="?? Roast Pilot Roasters" />
-          <Input label="?대떦?먮챸" value={name} onChange={setName} placeholder="?? ?띻만?? />
-          <Input label="?대찓?? value={email} onChange={setEmail} placeholder="name@domain.com" />
-          <Input label="??諛곗튂 ???좏깮)" value={batches} onChange={setBatches} placeholder="?? 200" />
+
+          <Input
+            label="로스터리 이름"
+            value={roastery}
+            onChange={setRoastery}
+            placeholder="예: Roast Pilot Roasters"
+          />
+
+          <Input
+            label="이름"
+            value={name}
+            onChange={setName}
+            placeholder="홍길동"
+          />
+
+          <Input
+            label="이메일"
+            value={email}
+            onChange={setEmail}
+            placeholder="name@domain.com"
+          />
+
+          <Input
+            label="월 배치 수"
+            value={batches}
+            onChange={setBatches}
+            placeholder="예: 200"
+          />
+
           <label className="block">
-            <div className="text-sm text-neutral-700">臾몄쓽 ?댁슜</div>
+            <div className="text-sm text-neutral-700">문의 내용</div>
             <textarea
               className="mt-1 w-full rounded-md border border-neutral-300 px-3 py-2 text-sm outline-none focus:border-neutral-500"
               rows={6}
               value={msg}
               onChange={(e) => setMsg(e.target.value)}
-              placeholder="愿??湲곕뒫/?꾩옱 ?댁쁺 諛⑹떇/?먰븯???곕え ?뺥깭 ?깆쓣 ?곸뼱二쇱꽭??"
+              placeholder="도입 규모, 현재 사용 장비, 궁금한 점을 자유롭게 작성해주세요."
             />
           </label>
 
           <button
             className="inline-flex items-center justify-center rounded-md bg-neutral-900 px-4 py-2 text-sm text-white hover:bg-neutral-800"
             onClick={() => {
-              setDone("?묒닔 ?꾨즺. 怨??곕씫?쒕━寃좎뒿?덈떎.");
+              setDone("문의가 접수되었습니다. 빠르게 연락드리겠습니다.");
             }}
           >
-            ?쒖텧?섍린
+            문의 보내기
           </button>
         </div>
       </div>
