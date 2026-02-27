@@ -1,0 +1,20 @@
+import Container from "@/components/Container";
+
+export default function TermsPage() {
+  return (
+    <Container>
+      <div className="py-12 max-w-3xl">
+        <h1 className="text-3xl font-semibold tracking-tight">?댁슜?쎄?</h1>
+        <p className="mt-4 text-neutral-600 leading-relaxed">
+          V1 珥덉븞?낅땲?? ?댁쁺 ?뺤콉??留욎떠 臾멸뎄瑜??뺤젙?섏꽭??
+        </p>
+        <div className="mt-8 space-y-3 text-sm text-neutral-700 leading-relaxed">
+          <p>1. 紐⑹쟻: ?쒕퉬???댁슜 議곌굔 諛??덉감, 沅뚮━/?섎Т ?깆쓣 洹쒖젙?⑸땲??</p>
+          <p>2. 怨꾩젙: ?댁슜?먮뒗 ?뺥솗???뺣낫瑜??쒓났?댁빞 ?⑸땲??</p>
+          <p>3. ?곗씠?? ?낅줈???곗씠?곗쓽 泥섎━ 踰붿쐞 諛?蹂닿? ?뺤콉? 蹂꾨룄 怨좎??⑸땲??</p>
+          <p>4. 梨낆엫: ?쒕퉬???μ븷, ?곗씠???먯떎?????踰붿쐞???댁쁺 ?뺤콉???곕쫭?덈떎.</p>
+        </div>
+      </div>
+    </Container>
+  );
+}
