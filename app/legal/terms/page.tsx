@@ -4,15 +4,15 @@ export default function TermsPage() {
   return (
     <Container>
       <div className="py-12 max-w-3xl">
-        <h1 className="text-3xl font-semibold tracking-tight">?댁슜?쎄?</h1>
+        <h1 className="text-3xl font-semibold tracking-tight">이용약관</h1>
         <p className="mt-4 text-neutral-600 leading-relaxed">
-          V1 珥덉븞?낅땲?? ?댁쁺 ?뺤콉??留욎떠 臾멸뎄瑜??뺤젙?섏꽭??
+          V1 초안입니다. 지원 안내 방식으로 문의를 확인하세요.
         </p>
         <div className="mt-8 space-y-3 text-sm text-neutral-700 leading-relaxed">
-          <p>1. 紐⑹쟻: ?쒕퉬???댁슜 議곌굔 諛??덉감, 沅뚮━/?섎Т ?깆쓣 洹쒖젙?⑸땲??</p>
-          <p>2. 怨꾩젙: ?댁슜?먮뒗 ?뺥솗???뺣낫瑜??쒓났?댁빞 ?⑸땲??</p>
-          <p>3. ?곗씠?? ?낅줈???곗씠?곗쓽 泥섎━ 踰붿쐞 諛?蹂닿? ?뺤콉? 蹂꾨룄 怨좎??⑸땲??</p>
-          <p>4. 梨낆엫: ?쒕퉬???μ븷, ?곗씠???먯떎?????踰붿쐞???댁쁺 ?뺤콉???곕쫭?덈떎.</p>
+          <p>1. 목적: 서비스 이용 조건 안내, 약관/정책 앱을 규정합니다.</p>
+          <p>2. 설정: 이용자는 정책과 약관을 준수해야 합니다.</p>
+          <p>3. 앱의 로그인·앱의 처리 범위 및 방법 안내는 방법을 준수합니다.</p>
+          <p>4. 문의: 서비스 이용, 앱 관련 등 범위 지원 안내로 연결됩니다.</p>
         </div>
       </div>
     </Container>

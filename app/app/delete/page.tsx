@@ -18,16 +18,16 @@ export default function DeleteAccountPage() {
   return (
     <Container>
       <div className="py-12 max-w-md">
-        <h1 className="text-3xl font-semibold tracking-tight">?덊눜</h1>
+        <h1 className="text-3xl font-semibold tracking-tight">탈퇴</h1>
         <p className="mt-3 text-sm text-neutral-600 leading-relaxed">
-          ?덊눜 ??怨꾩젙 ?묎렐??以묐떒?⑸땲?? ?곗씠??泥섎━ ?뺤콉? ?댁쁺 ?뺤콉???곕쫭?덈떎.
+          탈퇴 시 계정 설정 데이터는 삭제됩니다. 앱의 처리 안내는 지원 안내로 연결됩니다.
         </p>
 
         <div className="mt-6 space-y-4">
           {err ? <Alert kind="error" message={err} /> : null}
           {ok ? <Alert kind="success" message={ok} /> : null}
 
-          <PasswordInput label="鍮꾨?踰덊샇 ?뺤씤" value={pw} onChange={setPw} required />
+          <PasswordInput label="비밀번호 확인" value={pw} onChange={setPw} required />
 
           <button
             className="w-full rounded-md bg-red-600 px-4 py-2 text-sm text-white hover:bg-red-500 disabled:opacity-60"
@@ -42,19 +42,19 @@ export default function DeleteAccountPage() {
                   body: JSON.stringify({ password: pw })
                 });
                 logout();
-                setOk("?덊눜媛 ?꾨즺?섏뿀?듬땲??");
+                setOk("탈퇴가 완료되었습니다.");
                 setTimeout(() => r.push("/"), 800);
               } catch (e: any) {
                 setErr(
                   e?.message ??
-                    "?덊눜 ?붿껌???ㅽ뙣?덉뒿?덈떎. ?쒕쾭???덊눜 ?붾뱶?ъ씤?멸? ?놁쓣 ???덉뒿?덈떎."
+                    "탈퇴 요청이 실패했습니다. 비밀번호를 확인한 뒤 다시 시도해 주세요."
                 );
               } finally {
                 setLoading(false);
               }
             }}
           >
-            ?덊눜?섍린
+            탈퇴하기
           </button>
         </div>
       </div>
