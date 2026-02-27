@@ -1,4 +1,4 @@
-﻿import { getToken, logout } from "./auth";
+import { getToken, logout } from "./auth";
 
 const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -49,4 +49,21 @@ export async function apiFetch<T>(
   }
 
   return data as T;
+}
+
+import type { RoastSummary, RoastDetailResponse } from "./types";
+
+export async function getRoasts(params?: {
+  limit?: number;
+  offset?: number;
+}): Promise<RoastSummary[]> {
+  const search = new URLSearchParams();
+  if (params?.limit != null) search.set("limit", String(params.limit));
+  if (params?.offset != null) search.set("offset", String(params.offset));
+  const q = search.toString();
+  return apiFetch<RoastSummary[]>(`/roasts${q ? `?${q}` : ""}`);
+}
+
+export async function getRoast(id: string): Promise<RoastDetailResponse> {
+  return apiFetch<RoastDetailResponse>(`/roasts/${encodeURIComponent(id)}`);
 }

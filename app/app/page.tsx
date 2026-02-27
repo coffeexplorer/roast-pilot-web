@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Container from "@/components/Container";
 import Alert from "@/components/Alert";
@@ -52,6 +52,9 @@ export default function AppHomePage() {
             </div>
 
             <div className="mt-6 flex flex-col gap-2 text-sm">
+              <Link className="underline" href="/app/roasts">
+                로스트 목록
+              </Link>
               <Link className="underline" href="/app/usage">
                 사용량 자세히 보기
               </Link>
