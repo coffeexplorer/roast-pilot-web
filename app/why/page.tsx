@@ -13,7 +13,7 @@ export default function WhyPage() {
 
         <div className="mt-10 grid gap-4">
           <div className="rounded-xl border border-neutral-200 p-5">
-            <div className="font-medium">諛곗튂 ?몄감瑜??섏튂??/div>
+            <div className="font-medium">배치 인사이트 제공</div>
             <div className="mt-2 text-sm text-neutral-600 leading-relaxed">
               媛숈? ?꾨줈?뚯씪?몃뜲 ?ㅻⅨ 留? ?댁쑀瑜?醫곹옄 ???덉뼱???⑸땲??
             </div>
@@ -25,7 +25,7 @@ export default function WhyPage() {
             </div>
           </div>
           <div className="rounded-xl border border-neutral-200 p-5">
-            <div className="font-medium">?곗씠?곌? ?먯궛????/div>
+            <div className="font-medium">데이터 자산화</div>
             <div className="mt-2 text-sm text-neutral-600 leading-relaxed">
               ?꾩쟻???볦씪?섎줉, ?먮떒? ??鍮좊Ⅴ怨??뺥솗?댁쭛?덈떎.
             </div>
