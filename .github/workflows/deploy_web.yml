@@ -1,0 +1,43 @@
+﻿name: Deploy Roast Pilot Web (Blue/Green)
+
+on:
+  push:
+    branches: ["main"]
+
+concurrency:
+  group: deploy-roast-pilot-web
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.LIGHTSAIL_HOST }}
+          username: ${{ secrets.LIGHTSAIL_USER }}
+          key: ${{ secrets.LIGHTSAIL_SSH_KEY }}
+          script_stop: true
+          command_timeout: 30m
+          script: |
+            set -euo pipefail
+
+            echo "== Host =="
+            hostname
+            date -Is
+
+            echo "== Pre-check =="
+            pm2 list || true
+            sudo ss -tulnp | egrep ':3000|:3001' || true
+            curl -sI https://roast-pilot.com | head -n 1 || true
+
+            echo "== Deploy =="
+            /home/ubuntu/roast-pilot-web/ops/deploy_bg_web.sh
+
+            echo "== Post-check =="
+            pm2 list || true
+            sudo ss -tulnp | egrep ':3000|:3001' || true
+            sudo cat /etc/nginx/snippets/roast-pilot-upstream.conf || true
+            curl -sI https://roast-pilot.com | head -n 1
