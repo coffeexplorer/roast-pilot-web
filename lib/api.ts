@@ -53,11 +53,20 @@ export async function apiFetch<T>(
 
 import type { AuthTokenResponse, RoastSummary, RoastDetailResponse } from "./types";
 
-/** 로그인: POST ${API_BASE}/auth/login, 토큰은 호출 측에서 setToken으로 저장. */
+/**
+ * 로그인: POST ${API_BASE}/auth/login, 토큰은 호출 측에서 setToken으로 저장.
+ * Body는 OpenAPI components.schemas.LoginRequest와 일치: { email, password }.
+ * 스키마 변경 시 GET /api/openapi.json → components.schemas.LoginRequest 확인.
+ */
 export async function login(email: string, password: string): Promise<AuthTokenResponse> {
-  return apiFetch<AuthTokenResponse>("/auth/login", {
+  const path = "/auth/login";
+  const body = { email, password };
+  if (typeof process !== "undefined" && process.env.NODE_ENV !== "production") {
+    console.log("[auth] login", { url: ensureBaseUrl() + path, payloadKeys: Object.keys(body) });
+  }
+  return apiFetch<AuthTokenResponse>(path, {
     method: "POST",
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify(body),
   });
 }
 
