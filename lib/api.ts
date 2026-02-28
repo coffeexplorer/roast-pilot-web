@@ -1,7 +1,9 @@
 import { getToken, logout } from "./auth";
 
 const API_BASE =
-  process.env.NEXT_PUBLIC_API_BASE_URL ?? "https://roast-pilot.com/api";
+  typeof window !== "undefined"
+    ? "/api"
+    : (process.env.NEXT_PUBLIC_API_BASE_URL ?? "https://roast-pilot.com/api");
 
 function ensureBaseUrl(): string {
   return API_BASE.replace(/\/+$/, "");
