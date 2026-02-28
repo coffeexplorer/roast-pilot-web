@@ -10,7 +10,7 @@ concurrency:
 
 jobs:
   deploy:
-    runs-on: [self-hosted, lightsail, web]
+    runs-on: ubuntu-latest
 
     steps:
       - name: Deploy via SSH
@@ -34,7 +34,7 @@ jobs:
             curl -sI https://roast-pilot.com | head -n 1 || true
 
             echo "== Deploy =="
-            /home/ubuntu/roast-pilot-web/ops/deploy_bg_web.sh
+            /home/ubuntu/ops/deploy_web_green.sh
 
             echo "== Post-check =="
             pm2 list || true
