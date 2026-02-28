@@ -1,12 +1,10 @@
 import { getToken, logout } from "./auth";
 
-const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+const API_BASE =
+  process.env.NEXT_PUBLIC_API_BASE_URL ?? "https://roast-pilot.com/api";
 
 function ensureBaseUrl(): string {
-  if (!baseUrl) {
-    throw new Error("NEXT_PUBLIC_API_BASE_URL is not set");
-  }
-  return baseUrl.replace(/\/+$/, "");
+  return API_BASE.replace(/\/+$/, "");
 }
 
 export async function apiFetch<T>(
@@ -51,7 +49,15 @@ export async function apiFetch<T>(
   return data as T;
 }
 
-import type { RoastSummary, RoastDetailResponse } from "./types";
+import type { AuthTokenResponse, RoastSummary, RoastDetailResponse } from "./types";
+
+/** 로그인: POST ${API_BASE}/auth/login, 토큰은 호출 측에서 setToken으로 저장. */
+export async function login(email: string, password: string): Promise<AuthTokenResponse> {
+  return apiFetch<AuthTokenResponse>("/auth/login", {
+    method: "POST",
+    body: JSON.stringify({ email, password }),
+  });
+}
 
 export async function getRoasts(params?: {
   limit?: number;
