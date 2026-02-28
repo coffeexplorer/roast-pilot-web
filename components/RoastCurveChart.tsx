@@ -28,10 +28,10 @@ type RoastCurveChartProps = {
 function buildChartData(
   time: number[],
   series: RoastCurveSeriesItem[]
-): Record<string, number | string>[] {
+): Record<string, number | string | null>[] {
   if (!time.length) return [];
   return time.map((t, i) => {
-    const row: Record<string, number | string> = {
+    const row: Record<string, number | string | null> = {
       time: Math.round(t * 10) / 10,
       _timeSeconds: t,
     };

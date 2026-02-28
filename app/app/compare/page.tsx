@@ -9,7 +9,7 @@ import type { RoastDetailResponse } from "@/lib/types";
 import { downsampleForChart } from "@/lib/downsample";
 import Link from "next/link";
 import { useSearchParams, usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 const COMPARE_STORAGE_KEY = "roast_compare_ids";
 const MAX_COMPARE = 2;
@@ -18,10 +18,13 @@ const MAX_DT_SEC = 0.6;
 /** 채널 선택 우선순위: BT → ET → ROR → 그 외 첫 채널 */
 const CHANNEL_ORDER = ["bt", "et", "ror"];
 
+type SearchParamsLike = {
+  get: (k: string) => string | null;
+  getAll?: (k: string) => string[];
+};
+
 /** ids 파라미터 파싱: ids=a,b 및 ids=a&ids=b 지원, 중복 제거, trim, 최대 2개. */
-function parseCompareIds(
-  searchParams: ReadonlyURLSearchParams | { get: (k: string) => string | null; getAll?: (k: string) => string[] }
-): { ids: string[]; trimmed: boolean } {
+function parseCompareIds(searchParams: SearchParamsLike): { ids: string[]; trimmed: boolean } {
   const repeated =
     typeof searchParams.getAll === "function" ? searchParams.getAll("ids") ?? [] : [];
   const single = searchParams.get("ids") ?? "";
@@ -77,7 +80,7 @@ function channelLabel(key: string): string {
   return key === "bt" ? "BT" : key === "et" ? "ET" : key === "ror" ? "ROR" : key.toUpperCase();
 }
 
-export default function ComparePage() {
+function ComparePageContent() {
   const searchParams = useSearchParams();
   const pathname = usePathname() ?? "/app/compare";
   const [ids, setIds] = useState<string[]>([]);
@@ -344,5 +347,17 @@ export default function ComparePage() {
         )}
       </div>
     </Container>
+  );
+}
+
+export default function ComparePage() {
+  return (
+    <Suspense fallback={
+      <Container>
+        <div className="py-12 text-center text-neutral-500">불러오는 중...</div>
+      </Container>
+    }>
+      <ComparePageContent />
+    </Suspense>
   );
 }
